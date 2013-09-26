@@ -1,0 +1,149 @@
+// Events Archive Control Nav
+.pp-projects-filter-nav-wrap {
+	width:100%;
+	max-width:@pContentWidth;
+	margin: 10px 7px;
+	margin-bottom:30px;
+	position: relative;
+
+	.pp-projects-filter {
+
+		li {
+			display: inline-block;
+
+			a {
+				text-transform: uppercase;
+				font-size:0.82em;
+				padding:7px 15px;
+				.border-radius(4px);
+				.transition(.5s linear);
+				background: #495559;
+				box-shadow: 0 1px 0 #252b2c, #667074 0px 1px 2px inset;
+				border:1px solid #262c2e;
+				color: #e2e2e2;
+				font-weight: bold;
+				text-shadow:1px 0 1px rgba(255,255,255,0.2);
+				margin:0 4px;
+				.box-sizing(border-box);
+			}
+			&:hover a{
+				background: #5d6b6f;
+			}
+			&.active a {
+				background: #252b2d;
+				box-shadow: 0 1px 0 #474f51, #1e2325 0px 1px 2px inset;
+			}
+		}
+	}
+}
+
+.pp-project-single {
+	display: inline-block;
+	.box-sizing(border-box);
+	padding:10px;
+	.transition(.4s linear);
+	margin-right:-4px; // fight the space between inline-blocks
+	overflow: hidden;
+	vertical-align: top;
+	
+	div.item{
+		background: #202020;
+		.border-radius(0 0 4px 4px);
+		.box-shadow(0 0 5px #000);
+		.transition(all .3s ease-in-out);
+		&:hover{
+			.box-shadow(0 0 10px @pl-link);
+		}
+		
+		span.thumbnail{
+			clear: both;
+		}
+		span.title{
+			display: block;
+			color: #f3f3f3;
+			padding: 10px 0 0 10px;
+			text-transform: uppercase;
+		}
+		span.date{
+			display: block;
+			padding: 0 0 10px 10px;
+			font-size: 12px;
+			color: #706f6f;
+		}
+		span.image-count{
+			display: block;
+			float: right;
+			border: 2px solid #706f6f;
+			padding: 3px 6px;
+			text-align: center;
+			color: #706f6f;
+			.border-radius(30px);
+		}
+	}
+
+	&.pp-project-2col {
+		width:50%;
+	}
+
+	&.pp-project-3col {
+		width:33.333%;
+	}
+
+	&.pp-project-4col {
+		width:25%;
+	}
+
+	img {
+		.border-radius(4px 4px 0 0);
+		.box-sizing(border-box);
+		.transition(all .5s linear);
+	}
+}
+
+
+@media (max-width:650px) {
+	#page .pp-project-single {
+		width:100%;
+		display:block;
+
+		img {
+			width:100%;
+		}
+
+		.pp-close {
+			top:285px;
+			right:25px;
+		}
+	}
+	.pp-projects-filter-nav-wrap .pp-projects-filter li  {
+		width:50%;
+
+		&.active a {
+			border:none;
+			background: darken(@pl-link,8);
+		}
+
+		a {
+			width: 100%;
+			display: block;
+			padding: 5px 10px;
+			margin-left:0;
+			border-radius:0;
+			border:none;
+		}
+	}
+
+}
+@media(max-width:320px) {
+	#site #page .pp-close {
+		top:230px;
+	}
+	.pp-projects-filter-nav-wrap .pp-projects-filter li  {
+		width:100%;
+	}
+	.pp-projects-filter-nav-wrap {
+		margin-bottom:10px;
+	}
+}
+
+

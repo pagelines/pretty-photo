@@ -1,0 +1,160 @@
+
+
+.entry_content, .single-post, .post-excerpt{
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 1.45em;
+	background: #2c3233;
+	.border-radius(4px);
+	padding: 15px;
+}
+
+/*
+ * Responsive
+ ***********************/ 
+
+@media screen and (max-width:500px){
+	
+	/* Responsive Layout */
+		#page .pagelines-content, #page .plx-sidebar, #page .plx-archive-grid{
+			float: none;
+			width: auto;
+		}
+		
+		#page .pagelines-sidebar{
+			float: none;
+			width: auto
+			ul li{
+				margin: 2px 5px;
+				display: inline-block;
+				a{
+					display: inline-block;
+				}
+			}
+		}
+		
+	
+	.splash_area .splash_right{
+		overflow: hidden;
+		height: 470px;
+	}
+	#page .viddesc{font-size: 1.2em}
+}
+
+@media screen and (max-width:850px) { 
+	body #page .hero-text{
+		clear: both; 
+		padding-top: 10px;
+	}
+
+}
+
+@media screen and (max-width:600px) { 
+	#page {
+		.overview-media, .overview-content{
+			float: none;
+			width: auto;
+		}	}	
+}
+
+h1, h2, h3, h4, h5{
+	font-weight: normal;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+/* Pretty Photo Header */
+.pp-header{
+		h3{
+			color: @pl-link;
+			font-weight: normal;
+			font-size: 16px;
+			letter-spacing: 2px;
+		}	
+}
+.pp-nav{
+	text-transform: uppercase;
+	font-size: 20px;
+	border-top: 2px solid #5d6363;
+	border-bottom: 2px solid #5d6363;
+	
+	li.current-menu-item{
+		a{
+			border-bottom: 4px solid @pl-link;
+		}
+	}
+}
+/* Theme iBox */
+.pp-ibox{
+	.ibox-desc{
+		font-weight: normal;
+	}
+}
+
+/* Theme MediaBox */
+.pp-mediabox{
+	h3{
+		margin-top: 10px;
+	}
+	p{
+		font-weight: normal;
+	}
+}
+/* Theme Textbox */
+.pp-textbox{
+	strong{
+		text-transform: uppercase;
+		font-size: 22px;
+	}
+	.hentry{
+		padding-top: 8px;
+		font-weight: normal;
+	}
+}
+.post{
+	.entry-title{
+		font-size: 22px;
+	}
+	.post-thumb img{
+	.border-radius(5px);	
+	}
+}
+
+/* Theme Footer */
+.pp-footer-top{
+	background: #2c3233;
+	font-weight: normal;
+	
+	.textbox-wrap{
+		strong{
+			text-transform: uppercase;
+			font-size: 16px;
+			color: @pl-link;
+		}
+		.hentry{
+			color: #706f6f;
+			padding-top: 8px;
+		}
+	}
+	
+	.section-flipper{
+		.flipper-title{
+			color: @pl-link;
+			padding-bottom: 10px;
+		}
+		.flipper-post-title{
+			font-size: 18px;
+		}		
+		.flipper-metabar{
+			color: #706f6f;
+		}	
+		.flipper-prev, .flipper-next{
+			background: none;
+		}			
+	}
+}
+.pp-footer-bottom{
+	font-weight: normal;
+	color: #706f6f;
+	background: #242929;
+}
