@@ -58,7 +58,7 @@ class PPList extends PageLinesSection {
 					'key'		=> 'list_icons',
 					'label'		=> __( 'List Icons', 'pagelines' ),
 					'type'		=> 'text',
-					'help'		=> '<a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/">Icon Reference</a>',
+					'help'		=> '<strong>Ex. icon-ok-sign <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/">Icon Reference</a></strong>',
 				),
 			)
 
