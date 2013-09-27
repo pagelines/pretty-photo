@@ -7,7 +7,6 @@
 	Class Name: PPList
 	Filter: component
 	Loading: active
-	Edition: pro
 */
 
 
