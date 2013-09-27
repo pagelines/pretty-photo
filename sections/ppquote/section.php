@@ -22,7 +22,7 @@ class PPQuotes extends PageLinesSection {
 
 	function less($less){
 
-		$less['pp-quote-size'] = ( $this->opt('pp_quotes_size') ) ? $this->opt( 'pp_quotes_size' ) : '16px';
+		$less['pp-quote-size'] = ( $this->opt('pp_quotes_size') ) ? $this->opt( 'pp_quotes_size' ) : '18px';
 
 		return $less;
 	}
@@ -103,15 +103,15 @@ class PPQuotes extends PageLinesSection {
 
 		?><blockquote class="pp-quotes-item">
 			<p class="pp-quote"><?php _e('&ldquo;Impossible is a word to be found only in the dictionary of fools.&rdquo;','pp');?></p>
-			<small class="pp-quote-cite" ><?php _e('Napoleon Bonaparte','pp');?></small>
+			<small class="pp-quote-cite" ><?php _e('- Napoleon Bonaparte','pp');?></small>
 		</blockquote>
 		<blockquote class="pp-quotes-item">
 			<p class="pp-quote"><?php _e('&ldquo;The secret of health for both mind and body is not to mourn for the past, worry about the future, or anticipate troubles but to live in the present moment wisely and earnestly.&rdquo;','pp');?></p>
-			<small class="pp-quote-cite" ><?php _e('Buddah','pp');?></small>
+			<small class="pp-quote-cite" ><?php _e('- Buddah','pp');?></small>
 		</blockquote>
 		<blockquote class="pp-quotes-item">
 			<p class="pp-quote"><?php _e('&ldquo;Once you have mastered time, you will understand how true it is that most people overestimate what they can accomplish in a year – and underestimate what they can achieve in a decade!&rdquo;','pp');?>.</p>
-			<small class="pp-quote-cite" ><?php _e('Someone famous','pp');?></small>
+			<small class="pp-quote-cite" ><?php _e('- Someone famous','pp');?></small>
 		</blockquote><?php
 
 		$defaults = ob_get_clean();

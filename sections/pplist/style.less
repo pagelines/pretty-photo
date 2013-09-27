@@ -1,0 +1,47 @@
+.pp-list-wrap{
+	background: #202020;
+	.border-radius(5px); 
+	box-shadow: 0 0 10px rgba(0,0,0,.3);
+	padding: 30px 90px;
+	.head{
+		text-align: center;
+		margin: 0;
+	} 
+	.subhead{
+		text-align: center;
+		color: #B9B9B9;
+		margin-bottom: 30px;
+	}
+	
+	.pp-list{
+		text-align: left;
+		overflow:hidden;
+		.pp-header{
+			font-weight: 600;
+			
+			.pp-title{
+				color: #fff;
+				font-size: 18px;
+				padding: 5px 10px;
+				background: none;
+				text-transform: uppercase;
+				text-align: left;
+			}
+		}
+		.pp-attributes ul {
+			li{
+				padding: 5px;
+				font-weight: 600;
+				color: #B9B9B9;
+				
+				i{
+					color: @pl-link;
+				}
+				&.emphasis{
+					font-size: 120%;
+					color: @textColor;
+				}
+			}
+		}
+	}
+}
