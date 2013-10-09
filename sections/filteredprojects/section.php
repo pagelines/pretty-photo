@@ -1,19 +1,19 @@
 <?php
 /*
-	Section: Projects (Pretty Photo)
+	Section: Filtered Projects
 	Author: PageLines
 	Author URI: http://pagelines.com
-	Description: Portfolio custom post type for Pretty Photo
-	Class Name: PPProjects
+	Description: Projects custom post type for Pretty Photo
+	Class Name: PLFilteredProjects
+	Edition: pro
 	Filter: Post Layouts
 	Cloning: false
 */
 
-class PPProjects extends PageLinesSection {
+class PLFilteredProjects extends PageLinesSection {
 
     var $ptID = 'projects';
     var $taxID = 'project-categories';
-    const version = '1.0';
 
     function section_persistent(){
 
@@ -26,11 +26,10 @@ class PPProjects extends PageLinesSection {
 
         global $pagelines_ID;
         $oset = array('post_id' => $pagelines_ID);
-        $filtering = $this->opt('pp_projects_filtering_on');
+        $filter = $this->opt('projects_filtering_on');
 
-        // Load Projects JS
-        if($filtering)
-            wp_enqueue_script('projects-filter-js',$this->base_url.'/js/jquery.projects.filter.js',array('jquery'),self::version,true);
+        if($filter)
+            wp_enqueue_script('projects-filter-js', $this->base_url.'/js/jquery.projects.filter.min.js', array('jquery'), 1.0, true);
 
     }
 
@@ -96,19 +95,19 @@ class PPProjects extends PageLinesSection {
         global $post;
 
 
-        $pplayout = $this->opt('pp_projects_layout') ? $this->opt('pp_projects_layout') : '2col';
-        $filtering = $this->opt('pp_projects_filtering_on');
-        $cats = $this->opt('pp_projects_category');
-		$ppdate = get_the_date('M. Y') ;
+        $layout 	= $this->opt('projects_layout') ? $this->opt('projects_layout') : '2col';
+        $filter 	= $this->opt('projects_filtering_on');
+        $categories = $this->opt('projects_category');
+		$date 		= get_the_date('D M. Y') ;
 
-        if($filtering) {
-            $this->get_project_cats();
+        if($filter) {
+            $this->project_categories();
         }
 
-        printf('<ul class="unstyled pp-projects-wrap">');
+        printf('<ul class="unstyled projects-wrap">');
 
-            if($cats)
-                $args = array('post_type' => $this->ptID,'posts_per_page' => 100,'tax_query' => array(array('taxonomy' => $this->taxID,'field' => 'slug','terms' => array($cats))));
+            if($categories)
+                $args = array('post_type' => $this->ptID,'posts_per_page' => 100,'tax_query' => array(array('taxonomy' => $this->taxID,'field' => 'slug','terms' => array($categories))));
             else
                 $args = array('post_type' => $this->ptID,'posts_per_page' => 100, 'public' => true,	'has_archive' => true, );
 
@@ -117,9 +116,9 @@ class PPProjects extends PageLinesSection {
 
                 while ( $loop->have_posts() ) : $loop->the_post();
 
-					$pppermalink = get_permalink($post->ID);
+					$permalink = get_permalink($post->ID);
 
-                    printf('<li class="pp-project-single pp-project-%s %s">', $pplayout, $this->taxo_post_class());
+                    printf('<li class="project-single project-%s %s">', $layout, $this->taxo_post_class());
 
                         $img = get_the_post_thumbnail(get_the_ID(), array(595,300));
 
@@ -128,10 +127,10 @@ class PPProjects extends PageLinesSection {
 									<span class="title">%s</span>
 									<span class="date clear">%s</span>
 								</div>', 
-								$pppermalink, 
+								$permalink, 
 								$img, 
 								get_the_title(), 
-								$ppdate
+								$date
 								);
 
                     echo '</li>';
@@ -144,16 +143,16 @@ class PPProjects extends PageLinesSection {
     }
 
 
-    function get_project_cats(){
+    function project_categories(){
 
         global $post;
-        $orderby = $this->opt('pp_projects_filter_orderby',$this->oset) ? $this->opt('pp_projects_filter_orderby',$this->oset) : 'id';
-        $excludeid = $this->opt('pp_projects_filter_exclude',$this->oset);
+        $orderby = $this->opt('projects_filter_orderby',$this->oset) ? $this->opt('projects_filter_orderby',$this->oset) : 'id';
+        $excludeid = $this->opt('projects_filter_exclude',$this->oset);
         $args = array('orderby'     => $orderby,'exclude'     => array($excludeid),);
         $custom_terms = get_terms($this->taxID,$args);
 
-        ?><nav class="pp-projects-filter-nav-wrap fix">
-            <ul class="unstyled pp-projects-filter">
+        ?><nav class="projects-filter-nav-wrap fix">
+            <ul class="unstyled projects-filter">
 
                 <li class="active"><a class="all" href="#"><i class="icon-picture"></i>&nbsp; all</a></li><?php foreach ($custom_terms as $custom_term) {
                     printf('<li data-filter="%s"><a href="#">%s</a></li>',$custom_term->slug,$custom_term->name);
@@ -168,14 +167,14 @@ class PPProjects extends PageLinesSection {
 
         $tab = array(
            
-            'pp_projects_category'  => array(
+            'projects_category'  => array(
                 'title'           => 'View Control',
                 'shortexp'        => __('Select which Project category to show on this page','projects'),
                 'type'            => 'select',
                 'selectvalues'    => $this->get_option_terms(),
                 'exp'             => __('Shows all unless specified','projects'),
             ),
-            'pp_projects_layout' => array(
+            'projects_layout' => array(
                 'title'    =>'Projects Layout',
                 'shortexp'  =>'Control the display of items',
                 'type'          => 'select',
@@ -185,20 +184,20 @@ class PPProjects extends PageLinesSection {
                     '4col' => array('name' => '4 Column'),
                 ),
             ),
-            'pp_projects_filter_options' => array(
+            'projects_filter_options' => array(
                 'type' => 'multi_option',
                 'title' => 'Filter Options',
                 'shortexp' => 'Options for sorting and filtering projects',
                 'selectvalues' => array(
-                    'pp_projects_filtering_on' => array(
+                    'projects_filtering_on' => array(
                         'type' => 'check',
                         'inputlabel' => 'Enable Filtering'
                     ),
-                    'pp_projects_filter_exclude' => array(
+                    'projects_filter_exclude' => array(
                         'type' => 'text',
                         'inputlabel' => 'ID\'s to exclude'
                     ),
-                    'pp_projects_filter_orderby' => array(
+                    'projects_filter_orderby' => array(
                         'type' => 'select',
                         'inputlabel' => 'Order by (default is date created)',
                         'selectvalues' => array(
@@ -239,7 +238,7 @@ class PPProjects extends PageLinesSection {
         }
     }
 
-    // List terms for option array dropdown
+   
     function get_option_terms() {
 
         $terms = get_terms($this->taxID);
@@ -249,7 +248,7 @@ class PPProjects extends PageLinesSection {
            return ( isset( $categories) ) ? $categories : array();
     }
 
-    // fetch the tags for the columns in admin
+  
     function get_tags() {
         global $post;
 

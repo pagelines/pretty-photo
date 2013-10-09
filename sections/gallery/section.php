@@ -1,17 +1,18 @@
 <?php
 /*
-	Section: Gallery (Pretty Photo)
+	Section: Gallery
 	Author: PageLines
 	Author URI: http://www.pagelines.com
 	Description: An advanced, touch and swipe enabled image and rich media Gallery.
-	Class Name: PPGallery
+	Class Name: PLGallery
+	Edition: pro
 	Filter: slider, gallery
 */
 
 
-class PPGallery extends PageLinesSection {
+class PLGallery extends PageLinesSection {
 
-	var $default_limit = 3;
+	var $default_limit = 2;
 
 	function section_styles(){
 		wp_enqueue_script('royalslider', $this->base_url.'/royalslider/jquery.royalslider.min.js', array('jquery'));
@@ -151,28 +152,13 @@ class PPGallery extends PageLinesSection {
 		
 		if( empty($out) ){
 			$out[] = array(
-				'title'	=> 'Pretty Photo Gallery', 
+				'title'	=> 'Gallery', 
 				'img'	=>	$this->base_url.'/sample1.jpg'
 			);
 			
 			$out[] = array(
-				'title'	=> 'Pretty Photo Gallery', 
+				'title'	=> 'Gallery', 
 				'img'	=>	$this->base_url.'/sample2.jpg'
-			);
-			
-			$out[] = array(
-				'title'	=> 'Pretty Photo Gallery', 
-				'img'	=>	$this->base_url.'/sample3.jpg'
-			);
-			
-			$out[] = array(
-				'title'	=> 'Pretty Photo Gallery', 
-				'img'	=>	$this->base_url.'/sample4.jpg'
-			);
-			
-			$out[] = array(
-				'title'	=> 'Pretty Photo Gallery', 
-				'img'	=>	$this->base_url.'/sample5.jpg'
 			);
 		}
 		
